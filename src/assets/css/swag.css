@@ -1,0 +1,19 @@
+.form-wrapper {
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 3);
+    padding: 15px;
+    margin-top: 50px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.App {
+    background-color: #eee;
+    height: 100vh;
+}
+
+.btn {
+    padding: 5px 30px !important;
+    border-radius: 50px !important;
+}

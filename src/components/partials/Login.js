@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom';
 function Login(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    let userObj = {
+        email:'',
+        password:'',
+    }
+    const [user, setUser] = useState(userObj)
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-12">
                     <div className="form-wrapper">
                         <h3>Log In</h3>
+                        <hr/>
                         <form 
                             onSubmit={e => {
                                 e.preventDefault();
@@ -31,8 +37,13 @@ function Login(props) {
                                     type="email"
                                     className="form-control"
                                     placeholder="Email"
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
+                                    value={user.email}
+                                    onChange={(event) => { 
+                                        setUser(prevStyle => ({
+                                            ...prevStyle,
+                                            email: event.target.value
+                                        }));
+                                    }}
                                 />
                             </div>
                             <div className="form-group">
@@ -41,14 +52,21 @@ function Login(props) {
                                     type="password"
                                     className="form-control"
                                     placeholder="Password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
+                                    value={user.password}
+                                    onChange={(event) => { 
+                                        setUser(prevStyle => ({
+                                            ...prevStyle,
+                                            password: event.target.value
+                                        }));
+                                    }}
                                 />
                             </div>
                             <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-                            <button className="btn btn-primary" type="submit">
-                                Log In
-                            </button>
+                            <div className="text-center">
+                                <button className="btn btn-primary" type="submit">
+                                    Log In
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>

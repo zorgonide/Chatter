@@ -4,7 +4,7 @@ import * as ChatActions from './store/actions/chatActions'
 import { useEffect } from 'react';
 import Auth from "./components/pages/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "./assets/css/swag.css"
 function App(props) {
     useEffect(() => {
         props.setupSocket();
