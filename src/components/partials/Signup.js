@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Signup(props) {
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [name, setName] = useState('');
-    // const [username, setUsername] = useState('');
-    // const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
     let userObj = {
         email:'',
