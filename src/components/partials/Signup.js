@@ -44,15 +44,21 @@ function Signup(props) {
                                     else {
                                         setError('')
                                     }
-                                    props.socket.send(JSON.stringify({
-                                        type: 'SIGNUP',
-                                        data: {
-                                            email: user.email,
-                                            password: user.password,
-                                            name: user.name,
-                                            username: user.username
-                                        }
-                                    }))
+                                    try {
+                                        props.socket.send(JSON.stringify({
+                                            type: 'SIGNUP',
+                                            data: {
+                                                email: user.email,
+                                                password: user.password,
+                                                name: user.name,
+                                                username: user.username
+                                            }
+                                        }))
+                                    }
+                                    catch(err) {
+                                        setError('Network Error')
+                                    }
+                                    
                                 }
                             }}
                         > 

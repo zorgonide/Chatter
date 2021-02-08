@@ -24,8 +24,8 @@ function Login(props) {
                                     props.socket.send(JSON.stringify({
                                         type: 'LOGIN',
                                         data: {
-                                            email: email,
-                                            password: password 
+                                            email: user.email,
+                                            password: user.password 
                                         }
                                     }))
                                 }
