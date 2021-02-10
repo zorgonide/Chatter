@@ -1,7 +1,8 @@
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, useHistory ,Switch, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as ChatActions from './store/actions/chatActions'
-import { useEffect } from 'react';
+import * as AuthActions from './store/actions/authActions'
+import { useEffect, useState } from 'react';
 import Auth from "./components/pages/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/swag.css"
@@ -9,23 +10,57 @@ function App(props) {
     useEffect(() => {
         props.setupSocket();
     }, [])
-
+    let token = props.token;
+    const [logOut, setLogOut] = useState(false);
+    let history = useHistory();
     return (
         <div className="App">
+            <button
+                className="btn btn-danger"
+                onClick={e => 
+                {
+                    e.preventDefault();
+                    props.logout();
+                }
+            }>
+                Log Out
+            </button>
             <BrowserRouter>
                 <Switch>
                     <Route 
                         path="/login"
-                        component={Auth}
+                        render={props=> {
+                            if (token){
+                                return(
+                                    <Redirect to="/"/>
+                                )
+                            }
+                            else {
+                                return(
+                                    <Auth/>
+                                )
+                            }
+                        }}
                     />
                     <Route 
                         path="/signup"
-                        component={Auth}
+                        render={props=> {
+                            if (token){
+                                return(
+                                    <Redirect to="/"/>
+                                )
+                            }
+                            else {
+                                return(
+                                    <Auth/>
+                                )
+                            }
+                        }}
                     />
                     <Route 
                         path="/"
                         render={props => {
-                            if (!props.token) {
+                            if (!token) {
                                 return (
                                     <Redirect to="/login"></Redirect>
                                 )
@@ -48,11 +83,13 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
     setupSocket: () => {
-        dispatch(ChatActions.setupSocket())
+        dispatch(ChatActions.setupSocket());
+    },
+    logout: () => {
+        dispatch(AuthActions.logout());
     }
 })
 export default connect(
     mapStateToProps,
     mapDispatchToProps  
-)
-(App);
+)(App);
