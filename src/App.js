@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Auth from "./components/pages/Auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/swag.css"
+import Messenger from './components/pages/Messenger';
 function App(props) {
     useEffect(() => {
         props.setupSocket();
@@ -52,6 +53,21 @@ function App(props) {
                             }
                             else {
                                 return(
+                                    <Messenger/>
+                                )
+                            }
+                        }}
+                    />
+                    <Route 
+                        path="/:threadId"
+                        render={props=> {
+                            if (token){
+                                return(
+                                    <Redirect to="/"/>
+                                )
+                            }
+                            else {
+                                return(
                                     <Auth/>
                                 )
                             }
@@ -67,7 +83,7 @@ function App(props) {
                             }
                             else {
                                 return (
-                                    <h1>Root</h1>
+                                    <Messenger/>
                                 )
                             }
                         }}
