@@ -53,7 +53,7 @@ function App(props) {
                             }
                             else {
                                 return(
-                                    <Messenger/>
+                                    <Auth/>
                                 )
                             }
                         }}
@@ -68,7 +68,7 @@ function App(props) {
                             }
                             else {
                                 return(
-                                    <Auth/>
+                                    <Messenger/>
                                 )
                             }
                         }}
