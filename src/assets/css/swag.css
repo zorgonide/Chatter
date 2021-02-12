@@ -25,7 +25,8 @@
     height: 100vh;
     border-right: 1px solid #ddd;
     position: fixed;
-    top: 0px
+    top: 0px;
+    overflow-y: auto;
 }
 
 .main-view{
