@@ -89,3 +89,6 @@ ul.thread-list label {
     padding: 10px;
     height: auto;
 }
+.input-group {
+    padding: 5px 30px !important;
+}

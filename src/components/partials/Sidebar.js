@@ -10,10 +10,16 @@ function Sidebar(props) {
             data: search
         }))
     }
+    const findOrCreateThread = (id) => {
+        props.socket.send(JSON.stringify({
+            type: 'FIND_THREAD',
+            data: [props.user.id, id]
+        }))
+    }
     return (
         <div className="sidebar">
             <div className="search-container">
-                <input
+                {/* <input
                     className="form-control"
                     placeholder="Search"
                     value={search}
@@ -22,17 +28,31 @@ function Sidebar(props) {
                         searchFunction();
                     }} 
                 />
-                <button className="btn btn-primary" onClick={() => searchFunction()}>Search</button>
+                <button className="btn btn-primary" onClick={() => searchFunction()}>Search</button> */}
+                <div class="input-group  mt-3">
+                    <input
+                        className="form-control rounded-pill"
+                        placeholder="Search"
+                        value={search}
+                        onChange={e => {
+                            setSearch(e.target.value)
+                            searchFunction();
+                        }} 
+                    />
+                </div>
             </div>
             {
                 search ? 
                     <ul className="thread-list">
                         <label>Results</label>
                         {
-                            props.users && props.users.map((user, ui) => {
+                            props.users && props.users.filter(u => u.id !== props.user.id).map((user, ui) => {
                                 return (
-                                    <li>
-                                        <Link to='/thread'>
+                                    <li key={ui}>
+                                        <Link onClick={e => {
+                                            e.preventDefault();
+                                            findOrCreateThread(user.id);
+                                        }}>
                                             <i className="zmdi zmdi-account-circle"></i>
                                             <h5>{user.name}</h5>
                                             <p>{user.email}</p>
@@ -45,34 +65,19 @@ function Sidebar(props) {
                 :
                 <ul className="thread-list">
                     <label>Messages</label>
-                    <li>
-                        <Link to="/thread">
-                            <i className="zmdi zmdi-account-circle"></i>
-                            <h5>Name</h5>
-                            <p>Test message</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/thread">
-                            <i className="zmdi zmdi-account-circle"></i>
-                            <h5>Name</h5>
-                            <p>Test message</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/thread">
-                            <i className="zmdi zmdi-account-circle"></i>
-                            <h5>Name</h5>
-                            <p>Test message</p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/thread">
-                            <i className="zmdi zmdi-account-circle"></i>
-                            <h5>Name</h5>
-                            <p>Test message</p>
-                        </Link>
-                    </li>
+                    {
+                        props.threads.map((thread, threadIndex) => {
+                            return (
+                                <li>
+                                    <Link to="/thread">
+                                        <i className="zmdi zmdi-account-circle"></i>
+                                        <h5>{thread.id}</h5>
+                                        <p>Test message</p>
+                                    </Link>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             }           
         </div>
