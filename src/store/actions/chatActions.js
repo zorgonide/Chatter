@@ -11,11 +11,18 @@ export const setupSocket = () => {
         }
 
         socket.onmessage = (message) => {
-            console.log(JSON.parse(message.data))
             let data = JSON.parse(message.data);
+            console.log(data.data.users)
             switch(data.type) {
                 case 'LOGGEDIN':
-                    dispatch(AuthActions.loggedIn(data))
+                    dispatch(AuthActions.loggedIn(data));
+                    break;
+                case 'GOT_USERS':
+                    dispatch({
+                        type: 'GOT_USERS',
+                        payload: data.data.users,
+                    })
+                    break;
                 default:
                     //nothing
             }
