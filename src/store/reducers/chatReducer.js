@@ -7,7 +7,6 @@ const defaultState = {
 }
 
 const chat = (state = defaultState, action) => {
-    console.log(action)
     switch(action.type){
         case 'SETUP_SOCKET':
             return {
@@ -22,7 +21,14 @@ const chat = (state = defaultState, action) => {
         case 'ADD_THREAD':
             return {
                 ...state,
-                threads: state.threads.concat(action.payload)
+                threads:  state.threads.filter(t => t.id === action.payload.id).length === 0 ? 
+                state.threads.concat(action.payload) :
+                state.threads
+            }
+        case 'INITIAL_THREADS':
+            return {
+                ...state,
+                threads: action.payload
             }
         default:
             return state

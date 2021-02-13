@@ -5,11 +5,11 @@ import Sidebar from '../partials/Sidebar';
 import ThreadView from '../partials/ThreadView';
 import ChatInput from '../partials/ChatInput';
 
-function Messenger() {
+function Messenger(props) {
     return (
         <div className="messenger-container">
             <Sidebar/>
-            <ThreadView/>
+            <ThreadView match={props.match}/>
             <ChatInput/>
         </div>
     )

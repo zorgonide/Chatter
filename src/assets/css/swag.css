@@ -92,3 +92,6 @@ ul.thread-list label {
 .input-group {
     padding: 5px 30px !important;
 }
+.input-group input {
+    background-color: #eee;
+}

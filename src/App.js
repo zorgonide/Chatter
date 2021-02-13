@@ -9,11 +9,9 @@ import "./assets/css/swag.css"
 import Messenger from './components/pages/Messenger';
 function App(props) {
     useEffect(() => {
-        props.setupSocket();
+        props.setupSocket(props.token, props.user.id);
     }, [])
     let token = props.token;
-    const [logOut, setLogOut] = useState(false);
-    let history = useHistory();
     return (
         <div className="App">
             <button
@@ -58,20 +56,26 @@ function App(props) {
                             }
                         }}
                     />
-                    <Route 
+                    {/* <Route 
                         path="/:threadId"
                         render={props=> {
-                            if (token){
+                            if (!token){
                                 return(
-                                    <Redirect to="/"/>
+                                    <Redirect to="/login"/>
                                 )
                             }
                             else {
                                 return(
+                                    (routerParams) => <Messenger {...routerParams} />
                                     <Messenger/>
                                 )
                             }
                         }}
+                    /> */}
+                    <Route
+                        exact
+                        path="/:threadId"
+                        component={(routerParams) => <Messenger {...routerParams} />}
                     />
                     <Route 
                         path="/"
@@ -98,8 +102,8 @@ const mapStateToProps = state => ({
     ...state.chat
 })
 const mapDispatchToProps = dispatch => ({
-    setupSocket: () => {
-        dispatch(ChatActions.setupSocket());
+    setupSocket: (token, userId) => {
+        dispatch(ChatActions.setupSocket(token, userId));
     },
     logout: () => {
         dispatch(AuthActions.logout());
