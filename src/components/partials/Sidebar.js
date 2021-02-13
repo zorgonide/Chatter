@@ -11,6 +11,7 @@ function Sidebar(props) {
         }))
     }
     const findOrCreateThread = (id) => {
+        // add username here
         props.socket.send(JSON.stringify({
             type: 'FIND_THREAD',
             data: [props.user.id, id]
