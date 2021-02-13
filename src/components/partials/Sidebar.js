@@ -31,7 +31,7 @@ function Sidebar(props) {
                 <button className="btn btn-primary" onClick={() => searchFunction()}>Search</button> */}
                 <div class="input-group  mt-3">
                     <input
-                        className="form-control rounded-pill"
+                        className="form-control rounded-left"
                         placeholder="Search"
                         value={search}
                         onChange={e => {
@@ -39,6 +39,9 @@ function Sidebar(props) {
                             searchFunction();
                         }} 
                     />
+                    <button className="btn-secondary rounded-right" onClick={() => searchFunction()}> 
+                        <i className="zmdi zmdi-search"></i>
+                    </button>
                 </div>
             </div>
             {
@@ -69,7 +72,7 @@ function Sidebar(props) {
                         props.threads.map((thread, threadIndex) => {
                             return (
                                 <li>
-                                    <Link to="/thread">
+                                    <Link to={`/${thread.id}`}>
                                         <i className="zmdi zmdi-account-circle"></i>
                                         <h5>{thread.id}</h5>
                                         <p>Test message</p>
