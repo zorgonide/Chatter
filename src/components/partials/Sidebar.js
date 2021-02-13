@@ -68,7 +68,7 @@ function Sidebar(props) {
                     {
                         props.threads.map((thread, threadIndex) => {
                             return (
-                                <li>
+                                <li className="message-threads">
                                     <Link to={`${thread.id}`}>
                                         <i className="zmdi zmdi-account-circle"></i>
                                         <h5>{thread.id}</h5>

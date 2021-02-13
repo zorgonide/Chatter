@@ -9,7 +9,7 @@ function ChatInput() {
         <div className="input-view">
             <input 
                 type="text" 
-                placeholder="Write you message"
+                placeholder="Write your message"
                 className="form-control"
                 value={content}
                 onChange={e => setContent(e.target.value)}
