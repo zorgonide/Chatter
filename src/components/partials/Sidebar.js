@@ -53,6 +53,7 @@ function Sidebar(props) {
                                         <Link onClick={e => {
                                             e.preventDefault();
                                             findOrCreateThread(user.id);
+                                            setSearch('');
                                         }}>
                                             <i className="zmdi zmdi-account-circle"></i>
                                             <h5>{user.name}</h5>
