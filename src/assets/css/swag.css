@@ -81,14 +81,20 @@ ul.thread-list label {
 .input-view {
     position: fixed;
     left: 300px;
-    width: 100%;
+    width: calc(100% - 300px);
     bottom: 0px;
+    box-shadow: 0px -1px 5px rgba(0,0,0, .2);
 }
-
+/* .input-view .input-group .form-control {
+    height: 50px;
+} */
 .input-view .form-control {
     border: none;
-    border-radius: 0px;
-    border-top: 1px solid #eee;
+    /* border-radius: 0px;
+    border-top: 1px solid #eee; */
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
     font-size: 14px;
     padding: 10px;
     height: auto;

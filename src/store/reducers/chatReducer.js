@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils"
+
 const defaultState = {
     socket: null,
     message: '',
@@ -29,6 +31,33 @@ const chat = (state = defaultState, action) => {
             return {
                 ...state,
                 threads: action.payload
+            }
+        case 'ADD_MESSAGES_TO_THREAD':
+            return {
+                ...state,
+                threads: state.threads.map( t => {
+                    if (t.id === action.payload.threadId) {
+                        return {
+                            ...t,
+                            Messages: action.payload.messages.concat(t.Messages)
+                        }
+                    }
+                    else 
+                        return t;
+                })
+            }
+        case 'ADD_SINGLE_MESSAGE':
+            return {
+                ...state,
+                threads: state.threads.map(thread => {
+                    if (thread.id === action.payload.threadId) {
+                        return {
+                            ...thread,
+                            Messages: thread.Messages.concat(action.payload.message),
+                        } 
+                    } else 
+                        return thread;
+                })
             }
         default:
             return state

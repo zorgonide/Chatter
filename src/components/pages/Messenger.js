@@ -10,7 +10,7 @@ function Messenger(props) {
         <div className="messenger-container">
             <Sidebar/>
             <ThreadView match={props.match}/>
-            <ChatInput/>
+            <ChatInput match={props.match}/>
         </div>
     )
 }
