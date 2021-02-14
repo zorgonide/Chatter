@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux';
 
 function Message(props) {
-    console.log(props.msg.userId === props.user.id ? 'msg-right' : 'msg-left')
     let alignment = props.msg.userId === props.user.id ? 'msg-right' : 'msg-left';
     return (
         <div className={`message-item ${alignment}`}>
