@@ -65,6 +65,7 @@ export const setupSocket = (token, userId) => {
                             message: data.message,
                         }
                     })
+                    document.getElementById('main-view').scrollTop= document.getElementById('main-view').scrollHeight;
                 default:
                     //nothing
             }

@@ -8,7 +8,7 @@ import ChatInput from '../partials/ChatInput';
 function Messenger(props) {
     return (
         <div className="messenger-container">
-            <Sidebar/>
+            <Sidebar match={props.match}/>
             <ThreadView match={props.match}/>
             <ChatInput match={props.match}/>
         </div>

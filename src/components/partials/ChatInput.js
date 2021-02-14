@@ -32,7 +32,7 @@ function ChatInput(props) {
                     onChange={e => setContent(e.target.value)}
                 />
                 <div class="input-group-append">
-                    <button className="btn btn-send input-group-append"><i className="zmdi zmdi-mail-send"></i></button>
+                    <button className="btn btn-send input-group-append"><i className="zmdi zmdi-mail-send blue" ></i></button>
                 </div>
             </div>
         </form>

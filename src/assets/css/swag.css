@@ -34,7 +34,12 @@
     left: 300px;
     background-color: #fafafa;
     height: 100vh;
-    width: 100%;
+    width: calc(100% - 300px);
+    top: 0;
+    height: calc(100vh - 42px);
+    overflow: hidden;
+    overflow-y: scroll;
+    padding-bottom: 10px;;
 }
 
 ul.thread-list {
@@ -100,8 +105,49 @@ ul.thread-list label {
     height: auto;
 }
 .input-group {
-    padding: 5px 30px !important;
+    padding: 0px 30px !important;
 }
 .input-group input {
     background-color: #eee;
+}
+
+.message-item.msg-right {
+    text-align: right;
+}
+.message-item.msg-left {
+    text-align: left;
+}
+.message-item .zmdi.zmdi-account-circle {
+    /* float: right; */
+    margin-top: 5px;
+    font-size: 32px;
+    color: #aaa;
+}
+.message-item.msg-left .zmdi.zmdi-account-circle {
+    float: left;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.message-item.msg-right .zmdi.zmdi-account-circle {
+    float: right;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.message-item .chat-bubble {
+    max-width: 600px;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: #ddd;
+    margin: 5px 5px;
+    padding-top: 4px;
+}
+.message-item.msg-right .chat-bubble {
+    background-color: #1d8ff1;
+    color: #fff;
+}
+.blue {
+    color: #1d8ff1;
+    font-size: 22px;
 }
